@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="low-starter-web" />
+        <module name="low-starter-xxjob" />
+        <module name="low-starter-mybatis-mysql" />
+        <module name="low-starter-rabbitmq" />
+        <module name="low-starter-springcloud" />
+        <module name="low-starter-redisson" />
+        <module name="low-starter-kafka" />
+        <module name="low-starter-mongodb" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="low-framework-parent" target="1.8" />
+      <module name="low-framwork-core" target="1.8" />
+      <module name="low-starter-kafka" target="1.8" />
+      <module name="low-starter-mongodb" target="1.8" />
+      <module name="low-starter-mybatis-mysql" target="1.8" />
+      <module name="low-starter-rabbitmq" target="1.8" />
+      <module name="low-starter-redisson" target="1.8" />
+      <module name="low-starter-springcloud" target="1.8" />
+      <module name="low-starter-web" target="1.8" />
+      <module name="low-starter-xxjob" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="low-framwork-core" options="-parameters" />
+      <module name="low-starter-kafka" options="-parameters" />
+      <module name="low-starter-mongodb" options="-parameters" />
+      <module name="low-starter-mybatis-mysql" options="-parameters" />
+      <module name="low-starter-rabbitmq" options="-parameters" />
+      <module name="low-starter-redisson" options="-parameters" />
+      <module name="low-starter-springcloud" options="-parameters" />
+      <module name="low-starter-web" options="-parameters" />
+      <module name="low-starter-xxjob" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/low-starter-kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-mongodb/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-mybatis-mysql/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-rabbitmq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-redisson/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-redisson/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-springcloud/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-springcloud/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/low-starter-xxjob/src/main/java" charset="UTF-8" />
+  </component>
+</project>
