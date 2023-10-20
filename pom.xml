@@ -4,18 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.12</version>
-    </parent>
+
     <groupId>com.low</groupId>
     <artifactId>low-framework-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <modules>
+        <module>low-starter-dependencies</module>
         <module>low-starter-web</module>
-        <module>low-starter-springcloud</module>
         <module>low-starter-mybatis-mysql</module>
         <module>low-starter-redisson</module>
         <module>low-starter-mongodb</module>
@@ -25,180 +22,159 @@
     </modules>
 
     <properties>
-        <low-framwork-parent.version>1.0.0-SNAPSHOT</low-framwork-parent.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <compiler.plugin.version>2.5.1</compiler.plugin.version>
-
-        <slf4j.version>1.7.25</slf4j.version>
+        <low-framwork-core.version>1.0.0-SNAPSHOT</low-framwork-core.version>
+        <java.version>1.8</java.version>
+        <maven.plugin.version>3.8.1</maven.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>5.1.4.RELEASE</spring.version>
-        <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
-        <commons.io.version>2.3</commons.io.version>
-        <commons.langs.version>3.4</commons.langs.version>
-        <commons.collections.version>4.1</commons.collections.version>
-        <commons.beanutils.version>1.9.3</commons.beanutils.version>
-        <commons.codec.version>1.11</commons.codec.version>
-        <jackson.verison>2.9.8</jackson.verison>
-        <fastjson.version>1.2.78</fastjson.version>
-        <hibernate-validator.version>6.0.16.Final</hibernate-validator.version>
-        <spring.cloud.stream.version>Fishtown.RELEASE</spring.cloud.stream.version>
-        <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
-        <spring.cloud.alibaba.version>0.2.1.RELEASE</spring.cloud.alibaba.version>
-        <spring-cloud-starter.version>2.1.0.RELEASE</spring-cloud-starter.version>
-        <spring.boot.admin.version>2.1.2</spring.boot.admin.version>
-        <spring.boot.starter.version>2.1.2.RELEASE</spring.boot.starter.version>
-        <servlet-api.version>4.0.1</servlet-api.version>
-        <logstash-logback-encoder.version>1.0.3.6-SNAPSHOT</logstash-logback-encoder.version>
-        <logback-access-spring.version>2.7.1</logback-access-spring.version>
-        <skywalking.version>8.1.0</skywalking.version>
-        <guava.version>20.0</guava.version>
-        <mybatis-plus.version>3.1.2</mybatis-plus.version>
-        <pagehelper.version>5.1.2</pagehelper.version>
-        <jackson.version>2.11.3</jackson.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring.boot.version>2.5.5</spring.boot.version>
+
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+        <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-dockerfile-plugin.version>1.4.10</maven-dockerfile-plugin.version>
+        <!-- 推荐使用Harbor -->
+        <!--        <docker-maven-plugin.version>1.2.1</docker-maven-plugin.version>-->
+        <!--        <sonar.exclusions>mate-admin/**/*, mate-core/**/*</sonar.exclusions>-->
+        <!--        <docker.baseImage>openjdk:8-jre-alpine</docker.baseImage>-->
+        <!--        <docker.volumes>/tmp</docker.volumes>-->
+        <!--        <docker.image.prefix>192.168.3.6:8080/matecloud</docker.image.prefix>-->
+        <!--        <docker.java.security.egd>-Djava.security.egd=file:/dev/./urandom</docker.java.security.egd>-->
+        <!--        <docker.java.opts>-Xms128m -Xmx128m</docker.java.opts>-->
     </properties>
+
 
     <dependencyManagement>
         <dependencies>
-            <!-- 核心框架 -->
             <dependency>
                 <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-web</artifactId>
-                <version>${low-framwork-parent.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-springcloud</artifactId>
-                <version>${low-framwork-parent.version}</version>
-            </dependency>
-            <!--mysql-->
-            <dependency>
-                <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-mybatis-mysql</artifactId>
-                <version>${low-framwork-parent.version}</version>
-            </dependency>
-            <!--rediisson-->
-            <dependency>
-                <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-redisson</artifactId>
-                <version>${low-framwork-parent.version}</version>
-            </dependency>
-            <!--mongodb-->
-            <dependency>
-                <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-mongodb</artifactId>
-                <version>${low-framwork-parent.version}</version>
-            </dependency>
-            <!--rabbitmq-->
-            <dependency>
-                <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-rabbitmq</artifactId>
-                <version>${low-framwork-parent.version}</version>
-            </dependency>
-            <!--kafka-->
-            <dependency>
-                <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-kafka</artifactId>
-                <version>${low-framwork-parent.version}</version>
-            </dependency>
-            <!--xxjob-->
-            <dependency>
-                <groupId>com.low.starter</groupId>
-                <artifactId>low-starter-xxjob</artifactId>
-                <version>${low-framwork-parent.version}</version>
+                <artifactId>low-starter-dependencies</artifactId>
+                <version>${low-framwork-core.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
-        <!-- lombok -->
+
+        <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <!--            <scope>provided</scope>-->
         </dependency>
-        <!-- swagger -->
+        <!--hutool 工具-->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.swagger2.version}</version>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.swagger2.version}</version>
-        </dependency>
-
-        <!--springboot-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
-
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <!--    <build>-->
+    <!--        <resources>-->
+    <!--            <resource>-->
+    <!--                <directory>src/main/resources</directory>-->
+    <!--            </resource>-->
+    <!--            <resource>-->
+    <!--                <directory>src/main/java</directory>-->
+    <!--                <includes>-->
+    <!--                    <include>**/*.xml</include>-->
+    <!--                </includes>-->
+    <!--            </resource>-->
+    <!--        </resources>-->
+    <!--&lt;!&ndash;        <pluginManagement>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <plugins>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <artifactId>spring-boot-maven-plugin</artifactId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <version>${spring.boot.version}</version>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <configuration>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <fork>true</fork>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <finalName>${project.build.finalName}</finalName>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </configuration>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <executions>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <execution>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <goals>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <goal>repackage</goal>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </goals>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </execution>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </executions>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                <plugin>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    <groupId>com.spotify</groupId>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    <artifactId>docker-maven-plugin</artifactId>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    <version>${docker-maven-plugin.version}</version>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    <configuration>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <imageName>${docker.image.prefix}/${project.artifactId}</imageName>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <imageTags>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            <imageTag>${project.version}</imageTag>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            <imageTag>latest</imageTag>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        </imageTags>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <forceTags>true</forceTags>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <baseImage>${docker.baseImage}</baseImage>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <volumes>${docker.volumes}</volumes>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <env>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            <JAVA_OPTS>${docker.java.opts}</JAVA_OPTS>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        </env>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <entryPoint>["sh","-c","java $JAVA_OPTS ${docker.java.security.egd} -jar /${project.build.finalName}.jar"]</entryPoint>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <resources>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            <resource>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                <targetPath>/</targetPath>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                <directory>${project.build.directory}</directory>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                <include>${project.build.finalName}.jar</include>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            </resource>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        </resources>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    </configuration>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                </plugin>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                <plugin>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    <artifactId>maven-antrun-plugin</artifactId>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    <executions>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        <execution>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            <phase>package</phase>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            <goals>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                <goal>run</goal>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            </goals>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            <configuration>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                <tasks>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                    <copy overwrite="true"&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                          tofile="${session.executionRootDirectory}/target/${project.artifactId}.jar"&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                          file="${project.build.directory}/${project.artifactId}.jar" />&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                                </tasks>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                            </configuration>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                        </execution>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                    </executions>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                </plugin>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;            </plugins>&ndash;&gt;-->
+    <!--&lt;!&ndash;        </pluginManagement>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <plugins>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;            <plugin>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                <groupId>com.spotify</groupId>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                <artifactId>docker-maven-plugin</artifactId>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;                <version>${docker-maven-plugin.version}</version>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;            </plugin>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <artifactId>spring-boot-maven-plugin</artifactId>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <artifactId>maven-compiler-plugin</artifactId>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <version>${maven.plugin.version}</version>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <source>${java.version}</source>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <target>${java.version}</target>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <encoding>UTF-8</encoding>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <compilerArgs>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <arg>-parameters</arg>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </compilerArgs>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
+    <!--&lt;!&ndash;        </plugins>&ndash;&gt;-->
+    <!--    </build>-->
 
 </project>
